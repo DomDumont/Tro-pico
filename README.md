@@ -1,2 +1,2 @@
 # Tro-pico
-Tiny Replica Of Pico
+Tiny Replica Of Pico-8
