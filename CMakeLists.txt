@@ -1,4 +1,4 @@
-project (Tro-pico)
+Project (Tro-pico)
 
 cmake_minimum_required (VERSION 2.8.6)
 
