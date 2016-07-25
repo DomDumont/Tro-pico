@@ -1,7 +1,8 @@
 #include "Game.h"
+#include "AudioManager.h"
 
 
-void Game::Init(const char* title, int xpos, int ypos, int width,int height, int flags)
+bool Game::Init(const char* title, int xpos, int ypos, int width,int height, int flags)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 		{
@@ -12,9 +13,17 @@ void Game::Init(const char* title, int xpos, int ypos, int width,int height, int
 			{
 			pRenderer = SDL_CreateRenderer(pWindow, -1, 0);
 			}
+		else
+			{
+				return false;
+			}
 		}
 
+	pAudioManager = new AudioManager();
+	pAudioManager->Init();
+
 	bRunning = true;
+	return true;
 }
 
 

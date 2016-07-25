@@ -3,11 +3,13 @@
 #include <SDL.h>
 
 
+class AudioManager;
+
 class Game
 {
 
 public:
-	void Init(const char* title, int xpos, int ypos, int width, int height, int flags);
+	bool Init(const char* title, int xpos, int ypos, int width, int height, int flags);
 	void Shutdown();
 	bool IsRunning();
 	void HandleEvents();
@@ -18,6 +20,7 @@ private:
 	bool bRunning;
 	SDL_Window * pWindow;
 	SDL_Renderer* pRenderer;
+	AudioManager *pAudioManager;
 };
 
 
