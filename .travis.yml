@@ -8,7 +8,9 @@ os:
 
 
 before_install:
-- if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo add-apt-repository ppa:zoogie/sdl2-snapshots -y; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ];  then - sudo add-apt-repository ppa:team-xbmc/ppa -y; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ];  then - sudo apt-get update -qq; fi
+
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
 
 install:
