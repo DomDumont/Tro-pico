@@ -20,7 +20,7 @@ set (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
 IF(WIN32)
 	MESSAGE("Set SDL2 Env variable on Win32 platforms")
-	SET(ENV{SDL2} ${CMAKE_SOURCE_DIR}/Rototo/Extern/SDL2)
+	SET(ENV{SDL2} ${CMAKE_SOURCE_DIR}/Extern/SDL2-2.0.4)
 ENDIF(WIN32)
 
 
