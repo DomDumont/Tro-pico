@@ -6,7 +6,10 @@ install:
 
 # SDL2
 - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-devel-2.0.4-VC.zip appveyor DownloadFile http://www.libsdl.org/release/SDL2-devel-2.0.4-VC.zip
-- 7z x SDL2-devel-2.0.4-VC.zip .\Extern\
+- dir
+- 7z x SDL2-devel-2.0.4-VC.zip -o.\Extern\
+- cd Extern
+- dir
 
 cache:
 
