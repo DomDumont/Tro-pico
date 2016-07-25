@@ -10,6 +10,7 @@ install:
 - 7z x SDL2-devel-2.0.4-VC.zip -o.\Extern\
 - cd Extern
 - dir
+- cd ..
 
 cache:
 
