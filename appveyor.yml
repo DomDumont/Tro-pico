@@ -1,0 +1,22 @@
+
+os: Visual Studio 2015
+
+
+install:
+
+# SDL2
+- IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-devel-2.0.4-VC.zip appveyor DownloadFile http://www.libsdl.org/release/SDL2-devel-2.0.4-VC.zip
+- 7z x SDL2-devel-2.0.4-VC.zip .\Extern\
+
+cache:
+
+- SDL2-devel-2.0.4-VC.zip
+
+
+build_script:
+- mkdir build
+- cd build
+- cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 14 2015 Win64" ..
+- cmake --build .
+
+
