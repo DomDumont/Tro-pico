@@ -23,6 +23,23 @@ string(REGEX REPLACE "^([0-9]+)\\.[0-9]+\\.[0-9]+.*" "\\1" VERSION_MAJOR "${GIT_
 string(REGEX REPLACE "^[0-9]+\\.([0-9]+)\\.[0-9]+.*" "\\1" VERSION_MINOR "${GIT_DESCRIBE_VERSION}")
 string(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${GIT_DESCRIBE_VERSION}")
 
+
+if (WIN32)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+	set(TARGET_WIN32 1)
+	add_definitions(-DTARGET_WIN32)
+endif(WIN32)
+
+if (UNIX)
+	set(TARGET_LINUX 1)
+	add_definitions(-DTARGET_LINUX)
+endif(UNIX)
+
+if (APPLE)
+	set(TARGET_OSX 1)
+	add_definitions(-DTARGET_OSX)
+endif(APPLE)
+
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/Sources/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/Sources/config.h @ONLY)
  
 # add the binary tree to the search path for include files

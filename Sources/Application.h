@@ -3,9 +3,9 @@
 #include <SDL.h>
 #include <string>
 
-class AudioManager;
 
-class Game
+
+class Application
 {
 
 public:
@@ -20,7 +20,7 @@ private:
 	bool bRunning;
 	SDL_Window * pWindow;
 	SDL_Renderer* pRenderer;
-	AudioManager *pAudioManager;
+
 };
 
 

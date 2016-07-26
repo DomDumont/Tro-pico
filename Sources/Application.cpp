@@ -1,8 +1,8 @@
-#include "Game.h"
+#include "Application.h"
 #include "AudioManager.h"
 #include "config.h"
 
-bool Game::Init(std::string title, int xpos, int ypos, int width,int height, int flags)
+bool Application::Init(std::string title, int xpos, int ypos, int width,int height, int flags)
 {
 	std::string tempTitle;
 	tempTitle=  title + " " + GIT_DESCRIBE_VERSION;
@@ -21,15 +21,14 @@ bool Game::Init(std::string title, int xpos, int ypos, int width,int height, int
 			}
 		}
 
-	pAudioManager = new AudioManager();
-	pAudioManager->Init();
+	AudioManager::Get().Init();
 
 	bRunning = true;
 	return true;
 }
 
 
-void Game::Shutdown()
+void Application::Shutdown()
 {
 	SDL_DestroyWindow(pWindow);
 	SDL_DestroyRenderer(pRenderer);
@@ -39,12 +38,12 @@ void Game::Shutdown()
 
 
 
-bool Game::IsRunning()
+bool Application::IsRunning()
 {
 	return bRunning;
 }
 
-void Game::HandleEvents()
+void Application::HandleEvents()
 {
 	SDL_Event event;
 	if(SDL_PollEvent(&event))
@@ -60,12 +59,12 @@ void Game::HandleEvents()
 		}
 }
 
-void Game::Update()
+void Application::Update()
 {
 
 }
 
-void Game::Render()
+void Application::Render()
 {
 	SDL_RenderClear(pRenderer); 
 

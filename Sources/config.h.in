@@ -9,4 +9,18 @@
 #define VERSION_MINOR "@VERSION_MINOR@"
 #define VERSION_PATCH "@VERSION_PATCH@"
 
+
+
+#ifndef TARGET_WIN32
+#cmakedefine TARGET_WIN32
+#endif
+
+#ifndef TARGET_LINUX
+#cmakedefine TARGET_LINUX
+#endif
+
+#ifndef TARGET_OSX
+#cmakedefine TARGET_OSX
+#endif
+
 #endif

@@ -1,9 +1,9 @@
-#include "Game.h"
+#include "Application.h"
 
-Game *g_game;
+Application *g_game;
 int main(int argc, char *argv[])
 {
-	g_game = new Game();
+	g_game = new Application();
 	g_game->Init("Tro-pico",100,100,128,128,0);
 	while(g_game->IsRunning())
 		{	
