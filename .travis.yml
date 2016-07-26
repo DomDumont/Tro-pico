@@ -1,37 +1,29 @@
 language: cpp
 compiler:
 - gcc
-
 os:
 - linux
 - osx
-
-
 before_install:
-- if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo add-apt-repository ppa:team-xbmc/ppa -y; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo add-apt-repository ppa:team-xbmc/ppa
+  -y; fi
 - if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo apt-get update -qq; fi
-
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
-
 install:
-
-
 - if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo apt-get install libsdl2-dev; fi
-
-
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install sdl2; fi
-
 before_script:
-
 - mkdir Build
 - cd Build
 - cmake -D CMAKE_BUILD_TYPE=Release ..
-
 script:
-
 - make
 - cmake --build . --target package --config Release
-
-
-
-
+deploy:
+  provider: releases
+  api_key:
+    secure: sF7VXJ61L4IySCiYlcHtEvAVYORpvN8yvLsg2XqSPo110qKjO//h5vGCT6GvOGx0Jd/RDQ+zFxF+1i6ThYh3NoaHQxa2ymVh25rFjDAFCWpKsc9iEpC+A1jP2hHndSVk6v5ePmOef8mJ79gF1sdMf6qO3BWg0LcKrQ1XLWn9KqB+dDiZtA7csJt2SPSfOe2n7rqm40NuwuDJ+BCZEMqMiB6U6rn41oe5ZQPlReRDmOBF/dJiiWbYzlUHkYG/bwr/Ub6rU5OAAUejRyhyfp5geVJFeTw3RFIPlrtCi8AEhgHAnAmENShTtV4MwgYfVlNijvB/ZL7TMucyoVahiEdQWJoRTV0FjxJdLh5oeOOjBtt+Lh7ZYgJx4XrPUB8J69PSrkvgLMzW9ISCmldKbF/2mxz0pNyDApSSm0jElQq8okGrJSqsYdbUDQ9CWQT/NmewSn15FEVDNvKcEYE+phkll+UtByK43PMR7YEXrVTWw0aMKaCAMfTHwkHCixq1PO9XOJz1pjR7zDHzNHdS5w2nXBCJQXKQxAj4lvdBuzWwmo3CYHtgDsWswE2SScpSy7JC+R2l7ZRiSc9UarlKJ7l9WlPbOIIFUFJjN/iAZIOry0ncdQpvhePsqIA+k9DOBXpegZcDtzDP8yI2IErJevs9exdA0KLFXnOrjHDoUVynE0U=
+  file: "*/ZIP/*.zip"
+  file_glob: true
+  on:
+    repo: DomDumont/Tro-pico
