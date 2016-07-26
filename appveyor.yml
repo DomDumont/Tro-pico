@@ -22,7 +22,7 @@ build_script:
 - cd build
 - cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 14 2015 Win64" ..
 
-- make
+- cmake --build . --target ALL_BUILD --config Release
 - cmake --build . --target package --config Release
 
 
