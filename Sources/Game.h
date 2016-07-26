@@ -1,7 +1,7 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 #include <SDL.h>
-
+#include <string>
 
 class AudioManager;
 
@@ -9,7 +9,7 @@ class Game
 {
 
 public:
-	bool Init(const char* title, int xpos, int ypos, int width, int height, int flags);
+	bool Init(std::string title, int xpos, int ypos, int width, int height, int flags);
 	void Shutdown();
 	bool IsRunning();
 	void HandleEvents();

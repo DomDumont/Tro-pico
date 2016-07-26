@@ -15,6 +15,6 @@ add_executable (Tro-pico ${TRO-PICO_SOURCES} ${TRO-PICO_HEADERS})
 
 target_link_libraries(Tro-pico ${SDL2_LIBRARY})
 
-
+INSTALL(TARGETS Tro-pico DESTINATION Tro-pico)
 
 

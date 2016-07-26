@@ -25,10 +25,12 @@ before_script:
 
 - mkdir Build
 - cd Build
-- cmake ..
+- cmake -D CMAKE_BUILD_TYPE=Release ..
+
 script:
 
-- make
+- cmake --build . --target ALL_BUILD --config Release
+- cmake --build . --target package --config Release
 
 
 
