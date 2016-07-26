@@ -29,7 +29,7 @@ before_script:
 
 script:
 
-- cmake --build . --target ALL_BUILD --config Release
+- make
 - cmake --build . --target package --config Release
 
 
