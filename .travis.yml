@@ -21,8 +21,8 @@ script:
 - cmake --build . --target package --config Release
 
 before_deploy:
-- if [ "$TRAVIS_OS_NAME" == "linux" ];  then export MYDEPLOYFILTER="Build/_CPack_Packages/Linux/ZIP/*.zip"; fi
-- if [ "$TRAVIS_OS_NAME" == "osx" ]; then export MYDEPLOYFILTER="Build/_CPack_Packages/Darwin/ZIP/*.zip"; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ];  then export MYDEPLOYFILTER="_CPack_Packages/Linux/ZIP/*.zip"; fi
+- if [ "$TRAVIS_OS_NAME" == "osx" ]; then export MYDEPLOYFILTER="_CPack_Packages/Darwin/ZIP/*.zip"; fi
 
 deploy:
   provider: releases
