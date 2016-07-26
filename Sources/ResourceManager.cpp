@@ -39,3 +39,44 @@ SDL_RWops*  ResourceManager::Load(const std::string & _file)
 #endif
 
 	}
+
+
+/*----------------------------------------------------------------------------*/
+
+std::string ResourceManager::LoadTextFile(const std::string& _file)
+	{
+	std::string contents;
+
+
+	SDL_RWops *rw;
+
+	rw = this->Load(_file);
+
+	if (rw != NULL)
+		{
+		/* Seek to 0 bytes from the end of the file */
+		Sint64 length = SDL_RWseek(rw, 0, SEEK_END);
+		SDL_RWseek(rw, 0, SEEK_SET);// ON retourne au début
+		if (length <= 0)
+			{
+			SDL_Log("Could not seek inside %s\n", _file.c_str());
+			return "";
+			}
+		else
+			{
+			SDL_LogVerbose(SDL_LOG_CATEGORY_APPLICATION, "script is %llu bytes long\n", length);
+			contents.resize((unsigned int)length);
+			if (SDL_RWread(rw, &contents[0], contents.size(), 1) != 1)
+				{
+				SDL_Log("Error reading file %s\n", _file.c_str());
+				return "";
+				}
+			SDL_RWclose(rw);
+			return contents;
+			}
+		}
+	else
+		{
+		return "";
+		}
+	}
