@@ -9,6 +9,7 @@ if (NOT DEFINED EMSCRIPTEN)
 	message( "SDL2 include path found = " ${SDL2_INCLUDE_DIR})
 endif()
 
+include_directories("../Extern/stb")
 
 
 add_executable (Tro-pico ${TRO-PICO_SOURCES} ${TRO-PICO_HEADERS})

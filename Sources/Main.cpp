@@ -1,16 +1,17 @@
+#include "Global.h"
 #include "Application.h"
 
-Application *g_game;
+
 int main(int argc, char *argv[])
 {
-	g_game = new Application();
-	g_game->Init("Tro-pico",100,100,128,128,0);
-	while(g_game->IsRunning())
+	g_app = new Application();
+	g_app->Init("Tro-pico",100,100,256,256,0);
+	while(g_app->IsRunning())
 		{	
-		g_game->HandleEvents();
-		g_game->Update();
-		g_game->Render();
+		g_app->HandleEvents();
+		g_app->Update();
+		g_app->Render();
 		}
-	g_game->Shutdown();
+	g_app->Shutdown();
 	return 0;
 }
