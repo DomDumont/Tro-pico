@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "AudioManager.h"
 #include "config.h"
+#include "Font.h"
 
 Application *g_app;
 
@@ -26,6 +27,13 @@ bool Application::Init(std::string title, int xpos, int ypos, int width,int heig
 	AudioManager::Get().Init();
 
 	bRunning = true;
+
+	Font *pTempFont = new Font();
+	pTempFont->Load("Data/pico8.ttf",32);
+	Color tempColor;
+	tempColor.r = 255;
+	SDL_Texture * tempTexture = pTempFont->RenderText("Coucou",tempColor);
+	SDL_RenderCopy(g_app->pRenderer, tempTexture, NULL, NULL);
 	return true;
 }
 
