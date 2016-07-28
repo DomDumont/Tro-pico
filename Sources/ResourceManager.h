@@ -17,6 +17,7 @@ class ResourceManager
 
 		SDL_RWops*  Load(const std::string & _file);
 		std::string LoadTextFile(const std::string& _file);
+		unsigned char * LoadBinaryFile(const std::string& _file);
 
 	private:
 		ResourceManager();

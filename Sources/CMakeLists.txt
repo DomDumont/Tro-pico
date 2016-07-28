@@ -11,8 +11,9 @@ endif()
 
 find_package(GLEW REQUIRED)
 if (GLEW_FOUND)
-    include_directories(${GLEW_INCLUDE_DIRS})
-    link_libraries(${GLEW_LIBRARIES})
+	MESSAGE("GLEW include path found = " ${GLEW_INCLUDE_PATH})
+    include_directories(${GLEW_INCLUDE_PATH})
+    link_libraries(${GLEW_LIBRARY})
 endif()
 
 find_package(OpenGL REQUIRED)
@@ -26,7 +27,7 @@ include_directories("../Extern/stb")
 
 add_executable (Tro-pico ${TRO-PICO_SOURCES} ${TRO-PICO_HEADERS})
 
-target_link_libraries(Tro-pico ${SDL2_LIBRARY})
+target_link_libraries(Tro-pico ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES})
 
 INSTALL(TARGETS Tro-pico DESTINATION Tro-pico)
 

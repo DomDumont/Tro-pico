@@ -3,6 +3,7 @@
 #include "config.h"
 #include "Font.h"
 
+
 Application *g_app;
 
 bool Application::Init(std::string title, int xpos, int ypos, int width,int height, int flags)
@@ -32,6 +33,8 @@ bool Application::Init(std::string title, int xpos, int ypos, int width,int heig
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 	SDL_GL_SetSwapInterval(1);
+
+	GLenum glewError = glewInit();
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
