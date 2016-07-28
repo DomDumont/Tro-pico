@@ -11,7 +11,9 @@ before_install:
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update; fi
 install:
 - if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo apt-get install libsdl2-dev; fi
+- if [ "$TRAVIS_OS_NAME" == "linux" ];  then sudo apt-get install libglew-dev; fi
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install sdl2; fi
+- if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install glew; fi
 before_script:
 - mkdir Build
 - cd Build
