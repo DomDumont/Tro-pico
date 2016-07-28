@@ -13,7 +13,7 @@ class Font
 
 public:
 	void Load(const std::string& _file, int _size);
-	SDL_Texture * Font::RenderText(const std::string& _text, Color _color);
+	SDL_Texture * RenderText(const std::string& _text, Color _color);
 	void GetTextExtent(const std::string& _text, float & _x, float &_y);
 	float GetFontHeight();
 public:

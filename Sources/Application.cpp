@@ -28,12 +28,7 @@ bool Application::Init(std::string title, int xpos, int ypos, int width,int heig
 
 	bRunning = true;
 
-	Font *pTempFont = new Font();
-	pTempFont->Load("Data/pico8.ttf",32);
-	Color tempColor;
-	tempColor.r = 255;
-	SDL_Texture * tempTexture = pTempFont->RenderText("Coucou",tempColor);
-	SDL_RenderCopy(g_app->pRenderer, tempTexture, NULL, NULL);
+	
 	return true;
 }
 
@@ -77,6 +72,14 @@ void Application::Update()
 void Application::Render()
 {
 	SDL_RenderClear(pRenderer); 
+
+	Font *pTempFont = new Font();
+	pTempFont->Load("Data/pico8.ttf", 16);
+	Color tempColor;
+	tempColor.r = 255;
+	SDL_Texture * tempTexture = pTempFont->RenderText("Coucou", tempColor);
+	
+	SDL_RenderCopy(g_app->pRenderer, tempTexture, NULL, NULL);
 
 	SDL_RenderPresent(pRenderer); 
 }
