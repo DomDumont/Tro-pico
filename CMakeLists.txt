@@ -65,7 +65,9 @@ set (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 IF(WIN32)
 	MESSAGE("Set SDL2 Env variable on Win32 platforms")
 	SET(ENV{SDL2} ${CMAKE_SOURCE_DIR}/Extern/SDL2-2.0.4)
+	SET(ENV{GLEW_ROOT_PATH} ${CMAKE_SOURCE_DIR}/Extern/glew-2.0.0)
 ENDIF(WIN32)
+
 
 
 add_subdirectory (Sources)

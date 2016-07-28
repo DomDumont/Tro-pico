@@ -21,6 +21,8 @@ public:
 	bool bRunning;
 	SDL_Window * pWindow;
 	SDL_Renderer* pRenderer;
+	SDL_GLContext mainContext;
+
 
 };
 

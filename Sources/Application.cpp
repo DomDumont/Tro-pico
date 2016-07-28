@@ -14,10 +14,32 @@ bool Application::Init(std::string title, int xpos, int ypos, int width,int heig
 		return false;
 		}
 		
-	if (SDL_CreateWindowAndRenderer(width, height, SDL_WINDOW_OPENGL, &pWindow, &pRenderer) < 0)
-	{
+	//if (SDL_CreateWindowAndRenderer(width, height, SDL_WINDOW_OPENGL, &pWindow, &pRenderer) < 0)
+	
+	pWindow = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL);
+	if (pWindow == NULL)
+	
+		{
 		return false;
-	}
+		}
+
+	mainContext = SDL_GL_CreateContext(pWindow);
+
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+	
+
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	SDL_GL_SetSwapInterval(1);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	//Initialize Modelview Matrix
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
 	AudioManager::Get().Init();
 
 	bRunning = true;
@@ -66,13 +88,16 @@ void Application::Update()
 void Application::Render()
 {
  	/* Set the background black */
-    glClearColor( 1.0f, 0.0f, 0.0f, 0.0f );
-    /* Clear The Screen And The Depth Buffer */
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 
+    /* Clear The Screen And The Depth Buffer */
+    glClear( GL_COLOR_BUFFER_BIT );
+
+	glMatrixMode(GL_MODELVIEW);
+	
     /* Move Left 1.5 Units And Into The Screen 6.0 */
     glLoadIdentity();
-    glTranslatef( -1.5f, 0.0f, -6.0f );
+    //glTranslatef( -1.5f, 0.0f, -6.0f );
 
     glBegin( GL_TRIANGLES );            /* Drawing Using Triangles */
       glVertex3f(  0.0f,  1.0f, 0.0f ); /* Top */
@@ -81,14 +106,15 @@ void Application::Render()
     glEnd( );                           /* Finished Drawing The Triangle */
 
     /* Move Right 3 Units */
-    glTranslatef( 3.0f, 0.0f, 0.0f );
-
-    glBegin( GL_QUADS );                /* Draw A Quad */
-      glVertex3f( -1.0f,  1.0f, 0.0f ); /* Top Left */
-      glVertex3f(  1.0f,  1.0f, 0.0f ); /* Top Right */
-      glVertex3f(  1.0f, -1.0f, 0.0f ); /* Bottom Right */
-      glVertex3f( -1.0f, -1.0f, 0.0f ); /* Bottom Left */
-    glEnd( );                           /* Done Drawing The Quad */
+    //glTranslatef( 3.0f, 0.0f, 0.0f );
+	/*
+    glBegin( GL_QUADS );   
+      glVertex3f( -1.0f,  1.0f, 0.0f ); 
+      glVertex3f(  1.0f,  1.0f, 0.0f ); 
+      glVertex3f(  1.0f, -1.0f, 0.0f ); 
+      glVertex3f( -1.0f, -1.0f, 0.0f ); 
+    glEnd( );                           
+	*/
     
-	SDL_RenderPresent(pRenderer);
+	SDL_GL_SwapWindow(pWindow);
 }
