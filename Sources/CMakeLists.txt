@@ -9,6 +9,13 @@ if (NOT DEFINED EMSCRIPTEN)
 	message( "SDL2 include path found = " ${SDL2_INCLUDE_DIR})
 endif()
 
+find_package(OpenGL REQUIRED)
+if (OpenGL_FOUND)
+    include_directories(${OPENGL_INCLUDE_DIRS})
+    link_libraries(${OPENGL_LIBRARIES})
+endif()
+
+
 find_package(GLEW REQUIRED)
 if (GLEW_FOUND)
 	MESSAGE("GLEW include path found = " ${GLEW_INCLUDE_PATH})
@@ -16,11 +23,6 @@ if (GLEW_FOUND)
     link_libraries(${GLEW_LIBRARY})
 endif()
 
-find_package(OpenGL REQUIRED)
-if (OpenGL_FOUND)
-    include_directories(${OPENGL_INCLUDE_DIRS})
-    link_libraries(${OPENGL_LIBRARIES})
-endif()
 
 include_directories("../Extern/stb")
 
