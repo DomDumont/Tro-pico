@@ -1,8 +1,8 @@
-# Copyright (c) 2009 Boudewijn Rempt <boud@valdyas.org>                                                                                          
-#                                                                                                                                                
-# Redistribution and use is allowed according to the terms of the BSD license.                                                                   
-# For details see the accompanying COPYING-CMAKE-SCRIPTS file. 
-# 
+# Copyright (c) 2009 Boudewijn Rempt <boud@valdyas.org>
+#
+# Redistribution and use is allowed according to the terms of the BSD license.
+# For details see the accompanying COPYING-CMAKE-SCRIPTS file.
+#
 # - try to find glew library and include files
 #  GLEW_INCLUDE_DIR, where to find GL/glew.h, etc.
 #  GLEW_LIBRARIES, the libraries to link against
@@ -24,11 +24,13 @@ IF (WIN32)
 
 
   ELSE(CYGWIN)
-  
+
     FIND_PATH( GLEW_INCLUDE_DIR GL/glew.h
+      PATHS
       $ENV{GLEW_ROOT_PATH}/include
     )
 
+    MESSAGE("coucou " + ${GLEW_INCLUDE_DIR})
     FIND_LIBRARY( GLEW_GLEW_LIBRARY
       NAMES glew glew32
       PATHS
@@ -36,18 +38,25 @@ IF (WIN32)
       ${OPENGL_LIBRARY_DIR}
     )
 
+  MESSAGE("coucou 3" + ${GLEW_GLEW_LIBRARY})
   ENDIF(CYGWIN)
 
 ELSE (WIN32)
 
   IF (APPLE)
 # These values for Apple could probably do with improvement.
-    FIND_PATH( GLEW_INCLUDE_DIR glew.h
+    FIND_PATH( GLEW_INCLUDE_DIR GL/glew.h
       /System/Library/Frameworks/GLEW.framework/Versions/A/Headers
       ${OPENGL_LIBRARY_DIR}
+      /usr/local/Cellar/glew/2.0.0/include
     )
-    SET(GLEW_GLEW_LIBRARY "-framework GLEW" CACHE STRING "GLEW library for OSX")
-    SET(GLEW_cocoa_LIBRARY "-framework Cocoa" CACHE STRING "Cocoa framework for OSX")
+    MESSAGE("GLEW include FOUND ON OSX " ${GLEW_INCLUDE_DIR} )
+      FIND_LIBRARY( GLEW_GLEW_LIBRARY GLEW
+      PATHS
+      /usr/local/Cellar/glew/2.0.0/lib
+      ${OPENGL_LIBRARY_DIR}
+      MESSAGE("GLEW LIB FOUND ON OSX " ${GLEW_GLEW_LIBRARY} )
+    )
   ELSE (APPLE)
 
     FIND_PATH( GLEW_INCLUDE_DIR GL/glew.h
@@ -78,6 +87,7 @@ IF(GLEW_INCLUDE_DIR)
       ${GLEW_GLEW_LIBRARY}
       ${GLEW_cocoa_LIBRARY}
     )
+    MESSAGE("coucou 2")
     SET( GLEW_FOUND "YES" )
 
 #The following deprecated settings are for backwards compatibility with CMake1.4
@@ -90,6 +100,7 @@ ENDIF(GLEW_INCLUDE_DIR)
 IF(GLEW_FOUND)
   IF(NOT GLEW_FIND_QUIETLY)
     MESSAGE(STATUS "Found Glew: ${GLEW_LIBRARIES}")
+    MESSAGE(STATUS "Found Glew includes : ${GLEW_INCLUDE_PATH}")
   ENDIF(NOT GLEW_FIND_QUIETLY)
 ELSE(GLEW_FOUND)
   IF(GLEW_FIND_REQUIRED)

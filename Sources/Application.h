@@ -1,6 +1,7 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 #include <SDL.h>
+#include "GL/glew.h"
 #include <SDL_opengl.h>
 #include <string>
 
