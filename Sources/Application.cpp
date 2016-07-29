@@ -2,6 +2,7 @@
 #include "AudioManager.h"
 #include "config.h"
 #include "Font.h"
+#include "Shaders.h"
 
 
 Application *g_app;
@@ -47,6 +48,8 @@ bool Application::Init(std::string title, int xpos, int ypos, int width,int heig
 
 	bRunning = true;
 
+	Shaders * pTempShader = new Shaders();
+	pTempShader->LoadFromFile("simple");
 	
 	return true;
 }

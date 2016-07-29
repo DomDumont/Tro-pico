@@ -10,10 +10,15 @@ class Shaders
 public:
 	void LoadFromFile(const std::string & filename);
 
+
 public:
 	// Création des IDs
 	GLuint vertexID;
 	GLuint fragmentID;
+	GLuint programID;
+
+private:
+	char CheckShaderCompilation(GLuint shaderID);
 	};
 #endif
 

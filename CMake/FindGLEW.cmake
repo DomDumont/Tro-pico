@@ -38,6 +38,7 @@ IF (WIN32)
       ${OPENGL_LIBRARY_DIR}
     )
 
+  MESSAGE("coucou 3" + ${GLEW_GLEW_LIBRARY})
   ENDIF(CYGWIN)
 
 ELSE (WIN32)
@@ -80,6 +81,7 @@ IF(GLEW_INCLUDE_DIR)
       ${GLEW_GLEW_LIBRARY}
       ${GLEW_cocoa_LIBRARY}
     )
+    MESSAGE("coucou 2")
     SET( GLEW_FOUND "YES" )
 
 #The following deprecated settings are for backwards compatibility with CMake1.4
