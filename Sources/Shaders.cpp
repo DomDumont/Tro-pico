@@ -18,13 +18,13 @@ void Shaders::LoadFromFile(const std::string & filename)
 	GLint vertexSize = 0;
 	GLint fragmentSize = 0;
 
-	// Création des IDs
+	// Crï¿½ation des IDs
 	vertexID = glCreateShader(GL_VERTEX_SHADER);
 	fragmentID = glCreateShader(GL_FRAGMENT_SHADER);
 
 	if (!vertexSource || !fragmentSource)
 		{
-		// Ici, il faudrait faire en sorte que le programme s'arrête
+		// Ici, il faudrait faire en sorte que le programme s'arrï¿½te
 		glDeleteShader(vertexID);
 		glDeleteShader(fragmentID);
 		return;
@@ -40,7 +40,7 @@ void Shaders::LoadFromFile(const std::string & filename)
 	glCompileShader(vertexID);
 	glCompileShader(fragmentID);
 
-	// Vérification des erreurs
+	// Vï¿½rification des erreurs
 	if (!CheckShaderCompilation(vertexID) || !CheckShaderCompilation(fragmentID))
 		{
 		glDeleteShader(vertexID);
@@ -58,27 +58,27 @@ void Shaders::LoadFromFile(const std::string & filename)
 	// On peut enfin passer aux liage.
 	glLinkProgram(programID);
 
-	// Et encore une fois on vérifie si tout se passe bien
+	// Et encore une fois on vï¿½rifie si tout se passe bien
 	glGetProgramiv(programID, GL_LINK_STATUS, &programState);
 	if (programState != GL_TRUE)
 		{
-		// On récupère la taille du log
+		// On rï¿½cupï¿½re la taille du log
 		GLint logSize = 0;
 		GLchar* log = NULL;
 
 		glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &logSize);
 
-		// On peut allouer la mémoire, une fois que l'on a la taille du log
+		// On peut allouer la mï¿½moire, une fois que l'on a la taille du log
 		log = (GLchar*)malloc(logSize);
 		if (log == NULL)
 			{
-			fprintf(stderr, "Erreur d'allocation de mémoire pour le log de la compilation du programme\n");
+			fprintf(stderr, "Erreur d'allocation de mï¿½moire pour le log de la compilation du programme\n");
 			glDeleteShader(vertexID);
 			glDeleteShader(fragmentID);
 			return;
 			}
 
-		// Et on récupère le log
+		// Et on rï¿½cupï¿½re le log
 		glGetProgramInfoLog(programID, logSize, &logSize, log);
 
 		// On affiche
@@ -90,31 +90,31 @@ void Shaders::LoadFromFile(const std::string & filename)
 		return;
 		}
 
-	// Voilà, nous sommes prêt
+	// Voilï¿½, nous sommes prï¿½t
 	glUseProgram(programID);
 }
 
-// Pour plus de simplicité, j'ajoute une fonction qui vérifie la compilation des shaders
+// Pour plus de simplicitï¿½, j'ajoute une fonction qui vï¿½rifie la compilation des shaders
 char Shaders::CheckShaderCompilation(GLuint shaderID)
 	{
 	GLint compilationStatus = 0;
 
-	// Vérification de la compilation pour le vertex shader
+	// Vï¿½rification de la compilation pour le vertex shader
 	glGetShaderiv(vertexID, GL_COMPILE_STATUS, &compilationStatus);
 	if (compilationStatus != GL_TRUE)
 		{
-		// Nous savons que la compilation a échoué, donc nous devons savoir pourquoi
-		// Nous devons récupéré la taille du log
+		// Nous savons que la compilation a ï¿½chouï¿½, donc nous devons savoir pourquoi
+		// Nous devons rï¿½cupï¿½rï¿½ la taille du log
 		GLint logLength = 0;
 		GLchar* log = NULL;
 
 		glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &logLength);
 
-		// Maintenant que nous avons la taille, nous pouvons alloué la mémoire suffisante pour ce log
+		// Maintenant que nous avons la taille, nous pouvons allouï¿½ la mï¿½moire suffisante pour ce log
 		log = (GLchar*)malloc(logLength);
 		if (log == NULL)
 			{
-			fprintf(stderr, "Erreur d'allocation de mémoire pour le log de la compilation du shader\n");
+			fprintf(stderr, "Erreur d'allocation de memoire pour le log de la compilation du shader\n");
 			return 0;
 			}
 
@@ -123,7 +123,7 @@ char Shaders::CheckShaderCompilation(GLuint shaderID)
 		// On peut afficher le message
 		fprintf(stderr, "Erreur de compilation:\n%s", log);
 
-		// Et on n'oublie pas de libéré la mémoire
+		// Et on n'oublie pas de libï¿½rï¿½ la mï¿½moire
 		free(log);
 
 		return 0;
