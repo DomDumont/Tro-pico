@@ -51,6 +51,7 @@ bool Application::Init(std::string title, int xpos, int ypos, int width,int heig
 
 void Application::Shutdown()
 {
+	SDL_GL_DeleteContext(mainContext);
 	SDL_DestroyWindow(pWindow);
 	SDL_DestroyRenderer(pRenderer);
 	SDL_Quit();
